@@ -5,6 +5,10 @@
       "NODE_VERSION": "16"
     }
   },
+<<<<<<< HEAD
   "rootDirectory": "client",
   "installCommand": "npm install"
+=======
+  "installCommand": "npm install --no-frozen-lockfile"
+>>>>>>> 0d75cd3da4c2d2a023a72abc12ad387524340c8d
 }
