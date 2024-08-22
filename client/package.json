@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "npm install",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -29,5 +30,8 @@
     "postcss": "^8.4.24",
     "tailwindcss": "^3.3.2",
     "vite": "^4.5.3"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }

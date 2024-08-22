@@ -1,8 +1,10 @@
 {
   "build": {
     "env": {
-      "NODE_ENV": "production"
+      "NODE_ENV": "production",
+      "NODE_VERSION": "16"
     }
   },
-  "installCommand": "pnpm install --no-frozen-lockfile"
+  "rootDirectory": "client",
+  "installCommand": "npm install"
 }
