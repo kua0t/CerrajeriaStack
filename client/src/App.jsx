@@ -4,6 +4,7 @@ import { AuthProvider } from "./context/authContext";
 import { ProtectedRoute } from "./routes";
 import { TaskFormPage } from "./pages/TaskFormPage";
 import { LoginPage } from "./pages/LoginPage";
+import { RegisterPage } from "./pages/RegisterPage";
 import { TasksPage } from "./pages/TasksPage";
 import { TaskProvider } from "./context/tasksContext";
 import React, { useState, useEffect } from "react";
@@ -31,10 +32,7 @@ function App() {
             <Routes>
               <Route path="/" element={<LoginPage />} />
               <Route path="/login" element={<LoginPage />} />
-              <Route
-                path="/register"
-                element={<h1>Error 404 Pagina no encontrada</h1>}
-              />
+              <Route path="/register" element={<RegisterPage />} />
               <Route
                 path="/*"
                 element={<h1>Error 404 Pagina no encontrada</h1>}

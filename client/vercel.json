@@ -1,4 +1,8 @@
 {
-  "builds": [{ "src": "package.json", "use": "@vercel/static-build" }],
-  "routes": [{ "src": "/(.*)", "dest": "/index.html" }]
+  "build": {
+    "env": {
+      "NODE_ENV": "production"
+    }
+  },
+  "installCommand": "pnpm install --no-frozen-lockfile"
 }
