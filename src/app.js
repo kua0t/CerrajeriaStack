@@ -35,6 +35,4 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app.options("*", cors());
-
 export default app;
