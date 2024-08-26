@@ -11,9 +11,8 @@ const app = express();
 
 app.use(
   cors({
+    origin: "*",
     credentials: true,
-    origin: "https://cerrajeria-frontend.vercel.app",
-    methods: ("POST", "GET"),
   })
 );
 app.use(express.json());
