@@ -7,4 +7,4 @@ export const MONGODB_URI =
 export const TOKEN_SECRET = process.env.TOKEN_SECRET || "secret";
 
 export const FRONTEND_URL =
-  process.env.FRONTEND_URL || "https://cerrajeria-frontend.netlify.app";
+  process.env.FRONTEND_URL || "https://cerrajeria-frontend.vercel.app";
