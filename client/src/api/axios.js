@@ -3,7 +3,7 @@ import { API_URL } from "../config";
 
 const instance = axios.create({
   withCredentials: true,
-  baseURL: "*",
+  baseURL: API_URL,
 });
 
 export default instance;
