@@ -12,7 +12,7 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: "https://cerrajeria-frontend.netlify.app",
+    origin: "https://cerrajeria-frontend.vercel.app",
     methods: ("POST", "GET"),
   })
 );
