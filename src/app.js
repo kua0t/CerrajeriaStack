@@ -11,7 +11,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "*",
+    origin: "https://cerrajeria-api.vercel.app/auth/login",
     credentials: true,
   })
 );
