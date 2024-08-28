@@ -7,3 +7,13 @@ const instance = axios.create({
 });
 
 export default instance;
+
+fetch('https://cerrajeria-api.vercel.app/auth/register', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  credentials: 'include',
+  body: JSON.stringify(data),
+});
+
