@@ -14,6 +14,5 @@ fetch('https://cerrajeria-api.vercel.app/auth/register', {
     'Content-Type': 'application/json',
   },
   credentials: 'include',
-  body: JSON.stringify(data),
 });
 
