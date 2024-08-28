@@ -2,7 +2,7 @@
   "version": 2,
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/api/(.*)",
       "dest": "/index.js",
       "headers": {
         "Access-Control-Allow-Origin": "https://cerrajeria-frontend.vercel.app",
