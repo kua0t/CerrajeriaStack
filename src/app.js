@@ -32,7 +32,7 @@ async function startServer() {
   try {
     await connectDB();
     console.log(`Environment: ${process.env.NODE_ENV}`);
-    console.log("database connecte")
+    console.log("database connected");
 
     if (process.env.NODE_ENV === "production") {
       const path = (await import("path")).default;
@@ -49,8 +49,9 @@ async function startServer() {
     });
 
   } catch (error) {
-    console.error(error);
+    console.error("Error en el inicio del servidor:", error);
   }
 }
 
 startServer();
+
