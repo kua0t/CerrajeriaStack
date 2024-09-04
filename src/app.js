@@ -26,9 +26,11 @@ app.use("/api/auth", authRoutes);
 app.use("/api", taskRoutes);
 
 async function startServer() {
+  console.log("intento de inicio de server")
   try {
     await connectDB();
     console.log(`Environment: ${process.env.NODE_ENV}`);
+    console.log("database connecte")
 
     if (process.env.NODE_ENV === "production") {
       const path = (await import("path")).default;
