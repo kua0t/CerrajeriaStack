@@ -25,6 +25,8 @@ app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api", taskRoutes);
 
+console.log("server running")
+
 async function startServer() {
   console.log("intento de inicio de server")
   try {
