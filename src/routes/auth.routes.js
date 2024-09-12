@@ -11,7 +11,7 @@ import { loginSchema, registerSchema } from "../schemas/auth.schema.js";
 const router = Router();
 
 router.post("/register", validateSchema(registerSchema), register);
-router.post("/api/auth/login", validateSchema(loginSchema), login);
+router.post("/auth/login", login);
 router.get("/verify", verifyToken);
 router.post("/logout", verifyToken, logout);
 
