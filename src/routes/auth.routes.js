@@ -11,7 +11,7 @@ import { loginSchema, registerSchema } from "../schemas/auth.schema.js";
 const router = Router();
 
 router.post("/register", validateSchema(registerSchema), register);
-router.post("https://cerrajeria-frontend.vercel.app/login", validateSchema(loginSchema), login);
+router.post("https://cerrajeria-api.vercel.app/api/auth/login", validateSchema(loginSchema), login);
 router.get("/verify", verifyToken);
 router.post("/logout", verifyToken, logout);
 
