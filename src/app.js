@@ -25,7 +25,10 @@ app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api", taskRoutes);
 
-console.log("server running")
+app.post('/kuaot', (req, res) => {
+  console.log('Recibí una petición POST en /kuaot');
+  res.send('pong');
+});
 
 async function startServer() {
   console.log("intento de inicio de server")
