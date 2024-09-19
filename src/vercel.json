@@ -3,13 +3,30 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/app.js",
-      "headers": {
-        "methods": ["GET", "POST", "PUT", "DELETE"],
-        "Access-Control-Allow-Origin": "https://cerrajeria-frontend.vercel.app",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization",
-        "Access-Control-Allow-Credentials": "true"
-      }
+      "dest": "/app.js"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://cerrajeria-frontend.vercel.app"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET,POST,PUT,DELETE"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization"
+        },
+        {
+          "key": "Access-Control-Allow-Credentials",
+          "value": "true"
+        }
+      ]
     }
   ]
 }
