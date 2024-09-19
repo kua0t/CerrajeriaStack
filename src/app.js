@@ -19,18 +19,23 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(cookieParser());
 
+// Manejo de solicitudes OPTIONS para CORS
+app.options('/api/recursos', (req, res) => {
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.sendStatus(204); // Respuesta sin contenido
+});
+
+// Rutas
 app.use("/api/auth", authRoutes);
 app.use("/api", taskRoutes);
-
-
-
 app.post('/api/recursos', (req, res) => {
    res.status(200).json({ message: 'Recurso creado correctamente' });
 });
 
-
 async function startServer() {
-  console.log("intento de inicio de server")
+  console.log("intento de inicio de server");
   try {
     await connectDB();
     console.log(`Environment: ${process.env.NODE_ENV}`);
@@ -56,4 +61,3 @@ async function startServer() {
 }
 
 startServer();
-
