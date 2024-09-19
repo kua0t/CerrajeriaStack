@@ -10,8 +10,9 @@ import { connectDB } from "./db.js";
 const app = express();
 
 app.use(cors({
-  origin: 'https://cerrajeria-frontend.vercel.app',
+  origin: FRONTEND_URL,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 }));
 
@@ -19,19 +20,21 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(cookieParser());
 
-// Manejo de solicitudes OPTIONS para CORS
-app.options('/api/recursos', (req, res) => {
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.sendStatus(204); // Respuesta sin contenido
-});
-
-// Rutas
 app.use("/api/auth", authRoutes);
 app.use("/api", taskRoutes);
+
 app.post('/api/recursos', (req, res) => {
    res.status(200).json({ message: 'Recurso creado correctamente' });
+});
+
+app.use((req, res, next) => {
+  if (req.method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.header("Access-Control-Allow-Credentials", "true");
+    return res.sendStatus(204); 
+  }
+  next();
 });
 
 async function startServer() {
@@ -46,7 +49,6 @@ async function startServer() {
       app.use(express.static("client/dist"));
 
       app.get("*", (req, res) => {
-        console.log(path.resolve("client", "dist", "index.html"));
         res.sendFile(path.resolve("client", "dist", "index.html"));
       });
     }
