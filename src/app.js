@@ -22,6 +22,13 @@ app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api", taskRoutes);
 
+
+
+app.post('/api/recursos', (req, res) => {
+   res.status(200).json({ message: 'Recurso creado correctamente' });
+});
+
+
 async function startServer() {
   console.log("intento de inicio de server")
   try {
