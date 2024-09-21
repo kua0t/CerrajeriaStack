@@ -23,18 +23,8 @@ app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api", taskRoutes);
 
-// Endpoint de prueba
 app.get('/health', (req, res) => {
    res.status(200).json({ status: 'OK' });
-});
-
-// Rutas de ejemplo
-app.post('/api/recursos', (req, res) => {
-   res.status(200).json({ message: 'Recurso creado correctamente' });
-});
-
-app.get('/api/recursos', (req, res) => {
-   res.status(200).json({ message: 'Recurso obtenido correctamente' });
 });
 
 app.use((req, res, next) => {
