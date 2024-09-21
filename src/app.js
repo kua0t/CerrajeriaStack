@@ -23,9 +23,15 @@ app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api", taskRoutes);
 
+app.use((req, res) => {
+  res.status(404).json({ error: "Ruta no encontrada" });
+});
+
+
 app.get('/health', (req, res) => {
    res.status(200).json({ status: 'OK' });
 });
+
 
 app.use((req, res, next) => {
   if (req.method === "OPTIONS") {
