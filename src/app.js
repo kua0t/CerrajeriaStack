@@ -36,8 +36,6 @@ async function startServer() {
   console.log("intento de inicio de server");
   try {
     await connectDB();
-    console.log(`Environment: ${process.env.NODE_ENV}`);
-    console.log("database connected");
 
     if (process.env.NODE_ENV === "production") {
       const path = (await import("path")).default;
