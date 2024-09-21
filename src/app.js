@@ -32,17 +32,6 @@ app.get('/health', (req, res) => {
    res.status(200).json({ status: 'OK' });
 });
 
-
-app.use((req, res, next) => {
-  if (req.method === "OPTIONS") {
-    res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
-    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    res.header("Access-Control-Allow-Credentials", "true");
-    return res.sendStatus(204); 
-  }
-  next();
-});
-
 async function startServer() {
   console.log("intento de inicio de server");
   try {
