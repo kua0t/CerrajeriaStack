@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { TOKEN_SECRET } from "../config.js";
 import { createAccessToken } from "../libs/jwt.js";
+import User from "../models/user.model.js";
 
 export const register = async (req, res) => {
   try {
@@ -51,6 +52,7 @@ export const login = async (req, res) => {
     const { email, password } = req.body;
 
     const userFound = await User.findOne({ email });
+    
     if (!userFound)
       return res.status(400).json({ message: "User not found" });
 
