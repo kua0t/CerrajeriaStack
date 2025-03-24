@@ -14,7 +14,9 @@ export function LoginPage() {
   } = useForm({
     resolver: zodResolver(loginSchema),
   });
-  const { signin, errors: loginErrors, isAuthenticated } = useAuth();
+
+  // ✅ Corregido: `loginErrors` siempre tiene un array por defecto
+  const { signin, errors: loginErrors = [], isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   const onSubmit = (data) => signin(data);
@@ -28,15 +30,15 @@ export function LoginPage() {
   return (
     <div className="h-[calc(100vh-100px)] flex items-center justify-center">
       <Card className="max-w-md">
-        {loginErrors.map((error, i) => (
-          <Message message={error} key={i} />
-        ))}
+        {/* ✅ Corregido: Verificación antes de hacer `.map()` */}
+        {Array.isArray(loginErrors) &&
+          loginErrors.map((error, i) => <Message message={error} key={i} />)}
+
         <h1 className="text-2xl font-bold">Login</h1>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <Label htmlFor="email">Email:</Label>
           <Input
-            label="Write your email"
             type="email"
             name="email"
             placeholder="youremail@domain.tld"
