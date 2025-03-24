@@ -3,14 +3,12 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { TOKEN_SECRET } from "../config.js";
 import { createAccessToken } from "../libs/jwt.js";
-import User from "../models/user.model.js";
 
 export const register = async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
     const userFound = await User.findOne({ email });
-
     if (userFound)
       return res.status(400).json({
         message: ["The email is already in use"],
@@ -23,11 +21,9 @@ export const register = async (req, res) => {
       email,
       password: passwordHash,
     });
-    const userSaved = await newUser.save();
 
-    const token = await createAccessToken({
-      id: userSaved._id,
-    });
+    const userSaved = await newUser.save();
+    const token = await createAccessToken({ id: userSaved._id });
 
     res.cookie("token", token, {
       httpOnly: process.env.NODE_ENV !== "development",
@@ -47,16 +43,16 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
-    console.log("BODY LOGIN:", req.body); // 👈 Muy importante
+    console.log("BODY LOGIN:", req.body); // 👈 Log para depuración
 
     const { email, password } = req.body;
-
     const userFound = await User.findOne({ email });
-    
+
     if (!userFound)
       return res.status(400).json({ message: "User not found" });
 
-    const isMatch = await user.comparePassword(password);
+    // ✅ Solución: usar `userFound.comparePassword()` en lugar de `user.comparePassword()`
+    const isMatch = await userFound.comparePassword(password);
     if (!isMatch)
       return res.status(400).json({ message: "Wrong password" });
 
@@ -65,7 +61,7 @@ export const login = async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true,
       secure: true,
-      sameSite: "none" // Esto es importante en producción con cookies cross-origin
+      sameSite: "none",
     });
 
     res.json({
@@ -75,11 +71,10 @@ export const login = async (req, res) => {
     });
 
   } catch (error) {
-    console.error("ERROR EN LOGIN:", error); // 👈 Log del error exacto
+    console.error("ERROR EN LOGIN:", error); // 👈 Log detallado del error
     res.status(500).json({ message: "Error interno del servidor" });
   }
 };
-
 
 export const verifyToken = async (req, res) => {
   const { token } = req.cookies;
