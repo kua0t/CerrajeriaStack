@@ -23,14 +23,14 @@ app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api", taskRoutes);
 
+app.get('/health', (req, res) => {
+   res.status(200).json({ status: 'OK' });
+});
+
 app.use((req, res) => {
   res.status(404).json({ error: "Ruta no encontrada" });
 });
 
-
-app.get('/health', (req, res) => {
-   res.status(200).json({ status: 'OK' });
-});
 
 async function startServer() {
   console.log("intento de inicio de server");
