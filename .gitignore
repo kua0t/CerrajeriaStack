@@ -1,3 +1,19 @@
-node_modules
+# 🔒 Archivos sensibles
 .env
-.vercel
+config.js
+src/config.js
+client/src/config.js
+
+# ⚙️ Node.js y dependencias
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# 🏗️ Archivos de compilación
+dist/
+build/
+.cache/
+.vite/
+out/
+coverage/
